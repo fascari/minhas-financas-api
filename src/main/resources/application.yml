@@ -1,0 +1,18 @@
+spring:
+   jpa:
+      persistenceUnit: MinhasFinancasPU
+      showSql: false
+      properties:
+         hibernate.format_sql: false
+         hibernate.show-sql: true
+         hibernate.dialect: org.hibernate.dialect.PostgreSQL9Dialect
+         hibernate.jdbc.lob.non_contextual_creation: true
+   datasource:
+      type: com.zaxxer.hikari.HikariDataSource
+      url: jdbc:postgresql://localhost:5432/minhasfinancas
+      username: mf_owner
+      password: abc.1234
+      hikari:
+         maximum-pool-size: 5
+         minimum-idle: 1
+         idle-timeout: 30000
