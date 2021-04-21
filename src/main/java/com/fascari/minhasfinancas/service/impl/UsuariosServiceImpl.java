@@ -11,11 +11,12 @@ import com.fascari.minhasfinancas.model.repository.UsuariosRepository;
 import com.fascari.minhasfinancas.service.UsuariosService;
 
 @Service
-public class UsuarioServiceImpl implements UsuariosService {
-
+public class UsuariosServiceImpl implements UsuariosService {
+    public static final String MSG_AUTH_ERROR_SENHA_INVALIDA = "Senha inválida.";
+    public static final String MSG_AUTH_ERROR_USUARIO_NAO_ENCONTRADO = "Usuário não encontrado para o email informado.";
     private final UsuariosRepository repository;
 
-    public UsuarioServiceImpl(UsuariosRepository repository) {
+    public UsuariosServiceImpl(UsuariosRepository repository) {
         super();
         this.repository = repository;
     }
@@ -25,11 +26,11 @@ public class UsuarioServiceImpl implements UsuariosService {
         Optional<Usuarios> usuario = repository.findByEmail(email);
 
         if (!usuario.isPresent()) {
-            throw new AuthError("Usuário não encontrado para o email informado.");
+            throw new AuthError(MSG_AUTH_ERROR_USUARIO_NAO_ENCONTRADO);
         }
 
         if (!usuario.get().getSenha().equals(senha)) {
-            throw new AuthError("Senha inválida.");
+            throw new AuthError(MSG_AUTH_ERROR_SENHA_INVALIDA);
         }
 
         return usuario.get();
