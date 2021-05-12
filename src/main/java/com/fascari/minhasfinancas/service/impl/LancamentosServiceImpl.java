@@ -19,7 +19,7 @@ import com.fascari.minhasfinancas.service.LancamentosService;
 
 @Service
 @RequiredArgsConstructor
-public class LancamentoServiceImpl implements LancamentosService {
+public class LancamentosServiceImpl implements LancamentosService {
     private final LancamentosRepository repository;
 
     @Override
