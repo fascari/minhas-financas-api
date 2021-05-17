@@ -6,9 +6,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 import javax.persistence.*;
 
+import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 import com.fascari.minhasfinancas.model.enums.StatusLancamento;
 import com.fascari.minhasfinancas.model.enums.TipoLancamento;
 
@@ -23,9 +25,8 @@ public class Lancamentos {
     private Integer ano;
 
     @Column(name = "data_cadastro")
-    @Temporal(TemporalType.DATE)
-    //@Convert(converter = Jsr310JpaConverters.LocalDateConverter.class)
-    private Date dataCadastro;
+    @Convert(converter = Jsr310JpaConverters.LocalDateConverter.class)
+    private LocalDate dataCadastro;
 
     @Column(name = "descricao")
     private String descricao;

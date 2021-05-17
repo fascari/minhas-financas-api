@@ -43,7 +43,7 @@ public class UsuariosController {
     }
 
     @PostMapping
-    public ResponseEntity<Object> salvar(@PathVariable UsuariosDTO dto) {
+    public ResponseEntity<Object> salvar(@RequestBody UsuariosDTO dto) {
         Usuarios usuarios = Usuarios.builder().nome(dto.getNome()).email(dto.getEmail()).senha(dto.getSenha()).build();
         try {
             Usuarios usuarioSalvo = service.salvarUsuario(usuarios);

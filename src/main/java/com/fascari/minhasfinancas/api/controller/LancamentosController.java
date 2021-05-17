@@ -2,6 +2,7 @@ package com.fascari.minhasfinancas.api.controller;
 
 import lombok.RequiredArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -108,7 +109,7 @@ public class LancamentosController {
 
     private Lancamentos toEntity(LancamentosDTO dto, Lancamentos lancamentos) {
         Lancamentos.LancamentosBuilder lancamentosBuilder = Lancamentos.builder().id(dto.getId()).descricao(dto.getDescricao()).ano(dto.getAno()).mes(
-                dto.getMes()).valor(dto.getValor()).usuarios(getUsuarios(dto));
+                dto.getMes()).valor(dto.getValor()).usuarios(getUsuarios(dto)).dataCadastro(LocalDate.now());
         if (dto.getTipo() != null) {
             lancamentosBuilder.tipo(TipoLancamento.valueOf(dto.getTipo()));
         }
