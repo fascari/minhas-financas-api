@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.fascari.minhasfinancas.exceptions.BusinessException;
 import com.fascari.minhasfinancas.model.entity.Lancamentos;
 import com.fascari.minhasfinancas.model.enums.StatusLancamento;
+import com.fascari.minhasfinancas.model.enums.TipoLancamento;
 import com.fascari.minhasfinancas.model.repository.LancamentosRepository;
 import com.fascari.minhasfinancas.service.LancamentosService;
 
@@ -59,7 +60,7 @@ public class LancamentosServiceImpl implements LancamentosService {
     @Override
     @Transactional(readOnly = true)
     public BigDecimal obterSaldoPorUsuario(Long id) {
-        /*BigDecimal receitas = repository.obterSaldoPorTipoLancamentoEUsuarioEStatus(id, TipoLancamento.RECEITA, StatusLancamento.EFETIVADO);
+        BigDecimal receitas = repository.obterSaldoPorTipoLancamentoEUsuarioEStatus(id, TipoLancamento.RECEITA, StatusLancamento.EFETIVADO);
         BigDecimal despesas = repository.obterSaldoPorTipoLancamentoEUsuarioEStatus(id, TipoLancamento.DESPESA, StatusLancamento.EFETIVADO);
         if (receitas == null) {
             receitas = BigDecimal.ZERO;
@@ -67,8 +68,7 @@ public class LancamentosServiceImpl implements LancamentosService {
         if (despesas == null) {
             despesas = BigDecimal.ZERO;
         }
-        return receitas.subtract(despesas);*/
-        return BigDecimal.ZERO;
+        return receitas.subtract(despesas);
     }
 
     @Override
