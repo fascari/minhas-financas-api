@@ -94,7 +94,7 @@ public class LancamentosController {
     }
 
     private Usuarios getUsuarios(LancamentosDTO dto) {
-        Long idUsuario = dto.getUsuarios();
+        Long idUsuario = dto.getUsuario();
         if (idUsuario == null) {
             throw new BusinessException("Usuário não foi informado!");
         }
@@ -103,7 +103,7 @@ public class LancamentosController {
 
     private LancamentosDTO toDto(Lancamentos lancamento) {
         return LancamentosDTO.builder().id(lancamento.getId()).descricao(lancamento.getDescricao()).valor(lancamento.getValor()).mes(
-                lancamento.getMes()).ano(lancamento.getAno()).status(lancamento.getStatus().name()).tipo(lancamento.getTipo().name()).usuarios(
+                lancamento.getMes()).ano(lancamento.getAno()).status(lancamento.getStatus().name()).tipo(lancamento.getTipo().name()).usuario(
                 lancamento.getUsuarios().getId()).build();
 
     }
