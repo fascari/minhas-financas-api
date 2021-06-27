@@ -57,12 +57,13 @@ public class LancamentosController {
     @GetMapping
     public ResponseEntity buscar(@RequestParam(value = "descricao", required = false) String descricao,
             @RequestParam(value = "mes", required = false) Integer mes, @RequestParam(value = "ano", required = false) Integer ano,
-            @RequestParam("usuario") Long idUsuario) {
+            @RequestParam(value = "tipo", required = false) String tipo, @RequestParam("usuario") Long idUsuario) {
         Optional<Usuarios> usuario = usuarioService.obterPorId(idUsuario);
         if (!usuario.isPresent()) {
             return ResponseEntity.badRequest().body("Não foi possível realizar a consulta. Usuário não encontrado para o Id informado.");
         }
-        Lancamentos lancamentoFiltro = Lancamentos.builder().ano(ano).descricao(descricao).mes(mes).usuarios(usuario.get()).build();
+        Lancamentos lancamentoFiltro = Lancamentos.builder().ano(ano).descricao(descricao).mes(mes).usuarios(usuario.get()).tipo(
+                tipo != null ? TipoLancamento.valueOf(tipo) : null).build();
         List<Lancamentos> lancamentos = service.buscar(lancamentoFiltro);
         return ResponseEntity.ok(lancamentos);
     }
